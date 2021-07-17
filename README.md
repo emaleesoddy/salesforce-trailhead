@@ -1,18 +1,20 @@
-# Salesforce DX Project: Next Steps
+# hittin' the salesforce trails
+hi there! 👋🏻
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+this is where i play with and explore salesforce engineering. mainly it's trailhead challenges and superbadges, but at times i may put together some proof-of-concepts.
 
-## How Do You Plan to Deploy Your Changes?
+## branching structure
+`main` is a representation of completed & merged code, i.e. "production"
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+`playground/` is the current trailhead playground i am working in.
 
-## Configure Your Salesforce DX Project
+`cert-maintenance/` is the work required to complete a certification maintenance module
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
+`module/` is the module i am working on.
 
-## Read All About It
+`superbadge/` is the badge i am working on.
 
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+due to the nature of this repo, i don't delete the branches after my personal PRs or merges.
+
+# changelog
+17.07.2021 `cert-maintenance/spring21` completed admin & experience cloud spring '21 maintenance
