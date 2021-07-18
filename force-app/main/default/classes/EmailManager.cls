@@ -1,6 +1,6 @@
 /**
  * ─────────────────────────────────────────────────────────────────────────────────────────────────┐
- * https://trailhead.salesforce.com/en/content/learn/modules/apex_database/apex_database_intro?trail_id=force_com_dev_beginner
+ * https://trailhead.salesforce.com/en/content/learn/modules/apex_database/apex_database_intro
  *
  * This class was authored by Salesforce as part of a learning module.
  * ──────────────────────────────────────────────────────────────────────────────────────────────────
