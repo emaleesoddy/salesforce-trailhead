@@ -1,48 +1,46 @@
 /**
  * ─────────────────────────────────────────────────────────────────────────────────────────────────┐
- * https://trailhead.salesforce.com/en/content/learn/modules/apex_database/apex_database_intro
+ * https://trailhead.salesforce.com/en/content/learn/modules/apex_database/apex_database_dml
  *
- * This class contains a method that returns an array of formatted strings.
  * ──────────────────────────────────────────────────────────────────────────────────────────────────
  * @author         Emalee Soddy   <hello@emaleesoddy.com>
  * @version        1.0
  * @created        7/17/2021
  * @modified       7/17/2021
- * @systemLayer    Utility
+ * @systemLayer    Service
  * ──────────────────────────────────────────────────────────────────────────────────────────────────
  * @changes
  * v1.0            hello@emaleesoddy.com
  * 7/17/2021       Initial creation of the class.
+ *
  * ─────────────────────────────────────────────────────────────────────────────────────────────────┘
 */
 
-public with sharing class StringArrayTest {
+public with sharing class AccountHandler {
 
     /**
      * ─────────────────────────────────────────────────────────────────────────────────────────────┐
-     * This method accepts an integer {n} and generates a list of {n} strings to return.
+     * Accept a string and attempt to insert a new Account using the string as its name.
      * ──────────────────────────────────────────────────────────────────────────────────────────────
-     * @param    numberToGenerate    the number of strings to generate
-     * @return   List<String>        returns a list of strings
+     * @param    accountName    the name of the Account record to create
+     * @return   Account        returns the newly created Account record
      * ─────────────────────────────────────────────────────────────────────────────────────────────┘
     */
 
-    public static List<String> generateStringArray(Integer numberToGenerate) {
+    public static Account insertNewAccount(String accountName) {
 
-        List<String> generatedStrings = new List<String>(); // initialize the list to return
+        try {
 
-        // null check!
-        if (numberToGenerate != null && numberToGenerate > 0) {
+            Account newAccount = new Account(Name = accountName);
+            insert newAccount;
+            return newAccount;
 
-            for (Integer i=0; i < numberToGenerate; i++) {
-                generatedStrings.add('Test ' + i);
-            }
+        } catch (DmlException error) {
 
-        } else {
-            System.debug('No integer was passed to the method.');
+            // throw an exception and return nothing if the insert fails
+            System.debug('DML exception has occurred: ' + error.getMessage());
+            return null;
+
         }
-
-        return generatedStrings;
     }
-
 }
