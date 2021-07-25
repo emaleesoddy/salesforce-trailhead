@@ -35,6 +35,7 @@ public with sharing class OpportunitiesService {
                 SELECT Amount, (SELECT UnitPrice FROM OpportunityLineItems)
                 FROM Opportunity
                 WHERE Id IN :opportunityIds
+                WITH SECURITY_ENFORCED
         ];
         // Update Opportunities and Lines (if present)
         List<Opportunity> opportunitiesToUpdate = new List<Opportunity>();
