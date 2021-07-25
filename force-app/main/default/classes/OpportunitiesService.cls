@@ -23,6 +23,11 @@ public with sharing class OpportunitiesService {
      * ─────────────────────────────────────────────────────────────────────────────────────────────┘
     */
     public static void applyDiscounts(Set<Id> opportunityIds, Decimal discountPercentage) {
+        // Unit of Work
+        fflib_SObjectUnitOfWork uow = new fflib_SObjectUnitOfWork(
+                new List<SObjectType> { OpportunityLineItem.SObjectType, Opportunity.SObjectType  }
+        );
+
         // Validate parameters
         if (opportunityIds == null || opportunityIds.size() == 0) {
             throw new OpportunityServiceException('Opportunities not specified.');
@@ -41,29 +46,20 @@ public with sharing class OpportunitiesService {
         List<Opportunity> opportunitiesToUpdate = new List<Opportunity>();
         List<OpportunityLineItem> opportunityLinesToUpdate = new List<OpportunityLineItem>();
         Decimal factor = 1 - (discountPercentage == null ? 0 : discountPercentage / 100);
-        for (Opportunity opportunity : opportunities) {
+        for(Opportunity opportunity : opportunities) {
             // Apply to Opportunity Amount
-            if (opportunity.OpportunityLineItems != null && opportunity.OpportunityLineItems.size() > 0) {
-                for (OpportunityLineItem opportunityLineItem : opportunity.OpportunityLineItems) {
-                    opportunityLineItem.UnitPrice = opportunityLineItem.UnitPrice * factor;
-                    opportunityLinesToUpdate.add(opportunityLineItem);
+            if(opportunity.OpportunityLineItems!=null && opportunity.OpportunityLineItems.size()>0) {
+                for(OpportunityLineItem oppLineItem : opportunity.OpportunityLineItems) {
+                    oppLineItem.UnitPrice = oppLineItem.UnitPrice * factor;
+                    uow.registerDirty(oppLineItem);
                 }
             } else {
                 opportunity.Amount = opportunity.Amount * factor;
-                opportunitiesToUpdate.add(opportunity);
+                uow.registerDirty(opportunity);
             }
         }
-        // Update the database
-        Savepoint sp = Database.setSavepoint();
-        try {
-            update opportunityLinesToUpdate;
-            update opportunitiesToUpdate;
-        } catch (Exception e) {
-            // Rollback
-            Database.rollback(sp);
-            // Throw exception on to caller
-            throw e;
-        }
+        // Commit Unit of Work
+        uow.commitWork();
     }
 
     /** @description
