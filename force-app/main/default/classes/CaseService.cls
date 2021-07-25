@@ -35,7 +35,7 @@ public with sharing class CaseService {
         }
 
         // query the cases, set up list for CaseComments
-        List<Case> closedCases = [SELECT Id,Status,Reason FROM Case WHERE Id IN :caseIds];
+        List<Case> closedCases = [SELECT Id,Status,Reason FROM Case WHERE Id IN :caseIds WITH SECURITY_ENFORCED];
 
         // set up lists for updated records
         List<Case> closeReasons = new List<Case>();
