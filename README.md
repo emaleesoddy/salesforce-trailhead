@@ -17,6 +17,7 @@ this is where i play with and explore salesforce engineering. mainly it's trailh
 due to the nature of this repo, i don't delete the branches after my personal PRs or merges.
 
 # changelog
+* 25.07.2021 `module/apply-service-layer-principles` completed service layer principles challenge.
 * 18.07.2021 `module/write-soql-queries` retake of module challenge
 * 17.07.2021 `module/manipulate-records-with-dml` retake of module challenge
 * 17.07.2021 `module/get-started-with-apex` retake of module challenge; code required in later modules
