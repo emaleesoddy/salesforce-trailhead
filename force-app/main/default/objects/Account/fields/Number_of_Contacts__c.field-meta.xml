@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Number_of_Contacts__c</fullName>
+    <description>This field holds the total number of Contacts for the Account.</description>
+    <externalId>false</externalId>
+    <inlineHelpText>This field is updated via AccountProcessor.countContacts()</inlineHelpText>
+    <label>Number of Contacts</label>
+    <precision>8</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>
